@@ -1,0 +1,28 @@
+{
+  "name": "floor12/es-catastro-client",
+  "description": "PHP client for JSON API of spanish real estate cadastre",
+  "type": "library",
+  "require": {
+    "php": ">=8.0.0",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "*"
+  },
+  "license": "mit",
+  "authors": [
+    {
+      "name": "floor12",
+      "email": "floor12@floor12.net"
+    }
+  ],
+  "minimum-stability": "dev",
+  "autoload": {
+    "psr-4": {
+      "floor12\\catastro\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "floor12\\catastro\\Tests\\": "tests"
+    }
+  }
+}
