@@ -82,7 +82,7 @@ class ClientCatastro
         $inmueble->usoPrincipal = $data['bico']['bi']['debi']['luso'];
         $inmueble->superficie = $data['bico']['bi']['debi']['sfc'];
         $inmueble->participacionDeInmueble = (float)str_replace(',', '.', $data['bico']['bi']['debi']['cpt']);
-        $inmueble->ano = $data['bico']['bi']['debi']['ant'];
+        $inmueble->ano = $data['bico']['bi']['debi']['ant'] ?? null;
         if (isset($data['bico']['lcons'])) {
             foreach ($data['bico']['lcons'] as $construction) {
                 $inmueble->construcciones[] = $this->parseConstruction($construction);
