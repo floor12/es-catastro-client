@@ -12,7 +12,7 @@ class Inmueble
     // Surface of the property in square meters
     public string $superficie = '';
     // Year of construction
-    public string $ano = '';
+    public ?string $ano = '';
     // Percent of the main property
     public ?float $participacionDeInmueble = null;
     /** @var \Construction[] */
