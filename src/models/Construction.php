@@ -1,7 +1,7 @@
 <?php
 
 namespace floor12\catastro\models;
-class Construction
+class   Construction
 {
     // Main usage/type of the property
     public string $usePrincipal = '';
@@ -10,7 +10,7 @@ class Construction
     // Stair number
     public ?int $escalera = null;
     // Floor number
-    public ?int $planta = null;
+    public ?string $planta = null;
     // Door number
     public ?int $puerta = null;
     // Surface of the property in square meters
