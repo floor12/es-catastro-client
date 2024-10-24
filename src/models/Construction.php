@@ -4,7 +4,7 @@ namespace floor12\catastro\models;
 class   Construction
 {
     // Main usage/type of the property
-    public string $usePrincipal = '';
+    public ?string $usePrincipal = '';
     // Block number
     public ?string $bloque = null;
     // Stair number
