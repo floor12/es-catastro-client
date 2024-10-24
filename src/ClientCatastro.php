@@ -59,6 +59,12 @@ class ClientCatastro
         file_put_contents($path, $image);
     }
 
+    public function getStreetViewPhotoUrl(): string
+    {
+        $url = $this->inmueble->localicacion->getGoogleRequest();
+        return 'https://maps.googleapis.com/maps/api/streetview?size=1200x1200&fov=100&pitch=3&location=' . urlencode($url) . '&key=' . $this->googleApiKey;
+    }
+
     public function getGoogleMapLink(): string
     {
         $address = $this->inmueble->localicacion->getGoogleRequest();
