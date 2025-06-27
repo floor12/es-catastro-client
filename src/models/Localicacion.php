@@ -34,4 +34,15 @@ class Localicacion
     {
         return trim($this->titulo . ' ' . $this->viaType . ' ' . $this->viaNombre . ' ' . $this->numero . ' ' . $this->municipio . ' ' . $this->provincia);
     }
+
+    public function __toString(): string
+    {
+        $array = [$this->codigoPostal, $this->titulo, $this->viaType, $this->viaNombre, $this->numero];
+        if ($this->puerta) {
+            $array[] = 'pta ' . $this->puerta;
+        }
+        $array[] = $this->municipio;
+        $array[] = $this->provincia;
+        return implode(' ', $array);
+    }
 }

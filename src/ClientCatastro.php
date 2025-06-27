@@ -31,7 +31,7 @@ class ClientCatastro
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \Exception
      */
-    public function getData(): Inmueble
+    public function loadData(): array
     {
         if (empty($this->reference)) {
             throw new \InvalidArgumentException('Reference is required');
@@ -45,7 +45,12 @@ class ClientCatastro
         if (empty($data['consulta_dnprcResult'])) {
             throw new \Exception('No data found');
         }
-        return $this->parseData($data['consulta_dnprcResult']);
+        return $data['consulta_dnprcResult'];
+    }
+
+    public function getData(): Inmueble
+    {
+        return $this->parseData($this->loadData());
     }
 
     public function saveStreetViewPhoto($path): void
@@ -81,7 +86,7 @@ class ClientCatastro
      * @param array $data
      * @return \floor12\catastro\models\Inmueble
      */
-    private function parseData(array $data): Inmueble
+    public static function parseData(array $data): Inmueble
     {
         $inmueble = new Inmueble();
         $inmueble->referencia = $data['bico']['bi']['idbi']['rc'];
@@ -91,7 +96,7 @@ class ClientCatastro
         $inmueble->ano = $data['bico']['bi']['debi']['ant'] ?? null;
         if (isset($data['bico']['lcons'])) {
             foreach ($data['bico']['lcons'] as $construction) {
-                $inmueble->construcciones[] = $this->parseConstruction($construction);
+                $inmueble->construcciones[] = self::parseConstruction($construction);
             }
         }
         $localicacion = new Localicacion();
@@ -112,7 +117,7 @@ class ClientCatastro
         return $inmueble;
     }
 
-    private function parseConstruction($construction): Construction
+    public static function parseConstruction($construction): Construction
     {
         $c = new Construction();
         $c->usePrincipal = $construction['lcd'] ?? null;
